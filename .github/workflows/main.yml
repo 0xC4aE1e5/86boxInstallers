@@ -50,8 +50,15 @@ jobs:
           iwr "https://github.com/86Box/roms/archive/refs/heads/master.zip" -OutFile roms.zip
           expand-archive -path roms.zip -destination 86boxFiles
           rename-item -path "86boxFiles\roms-master" -newname "roms"
-      - name: 'Upload'
+      - name: Create Installer
+        run: iscc setup.iss
+      - name: 'Upload Portable'
         uses: actions/upload-artifact@v3
         with:
-          name: 86box
+          name: 86box (portable)
           path: 86boxFiles
+      - name: 'Upload Installer'
+        uses: actions/upload-artifact@v3
+        with:
+          name: 86box (installer)
+          path: Installer.exe
