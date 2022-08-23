@@ -9,4 +9,4 @@ All that you have to do is this:
 Notes:
 
 1. For some reason Windows Defender detects these installers as malicious software. This is a false positive.
-2. This might be out of date. It uploads on the 15th of every day.
+2. This might be out of date. It uploads on the 15th of every day (in UTC).
