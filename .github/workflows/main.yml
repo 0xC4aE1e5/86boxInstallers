@@ -25,6 +25,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Download & install Scoop
-        run: 'iex "& {$(irm get.scoop.sh)} -RunAsAdmin"'
-      - name: Add Scoop extras bucket
-        run: scoop bucket add extras
+        run: | 
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+          Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
+          scoop bucket add extras
