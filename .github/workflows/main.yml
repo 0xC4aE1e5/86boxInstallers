@@ -29,3 +29,13 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
           scoop bucket add extras
+      
+      - name: Download & install Inno Setup
+        run: scoop install inno-setup
+        
+      - name: Download latest 86box
+        run: |
+          $repo = "86Box/86Box"
+          $filenamePattern = "86Box-Windows-64-b*.zip"
+          $source = ((Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/$repo/releases")[0].assets | Where-Object name -like $filenamePattern ).browser_download_url
+          Start-BitsTransfer -Source $source -Destination "86box.zip"
