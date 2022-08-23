@@ -25,4 +25,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Download & Install Scoop
-        run: irm get.scoop.sh | iex
+        run: irm get.scoop.sh | iex -RunAsAdmin
