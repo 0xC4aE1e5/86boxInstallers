@@ -1,0 +1,7 @@
+This is a custom 86box installer built by a robot. It contains:
+
+- 86box
+- 86box Manager
+- ROMs
+
+And it does this all in one binary.
