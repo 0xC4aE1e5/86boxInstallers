@@ -29,13 +29,31 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
           scoop bucket add extras
-      
-      - name: Download & install Inno Setup
-        run: scoop install inno-setup
-        
+      - name: Download & install dependencies
+        run: scoop install inno-setup 7zip
       - name: Download latest 86box
         run: |
           $repo = "86Box/86Box"
           $filenamePattern = "86Box-Windows-64-b*.zip"
           $source = ((Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/$repo/releases")[0].assets | Where-Object name -like $filenamePattern ).browser_download_url
           Start-BitsTransfer -Source $source -Destination "86box.zip"
+          expand-archive -path 86box.zip -destination 86boxFiles
+      - name: Download latest 86box Manager
+        run: |
+          $repo = "86Box/86BoxManager"
+          $filenamePattern = "86BoxManager_*.zip"
+          $source = ((Invoke-RestMethod -Method GET -Uri "https://api.github.com/repos/$repo/releases")[0].assets | Where-Object name -like $filenamePattern ).browser_download_url
+          Start-BitsTransfer -Source $source -Destination "86boxManager.zip"
+          expand-archive -path 86boxManager.zip -destination 86boxFiles
+      - name: Download 86box ROMs
+        run: |
+          Start-BitsTransfer -Source $source -Destination "roms.zip"
+          expand-archive -path roms.zip -destination 86boxFiles
+          cmd /c ren 86boxFiles\roms-master 86boxFiles\roms
+      - name: Create 
+        run: 7z a 86box.zip .\86boxFiles\*
+      - name: 'Upload ZIP'
+        uses: actions/upload-artifact@v3
+        with:
+          name: 86box
+          path: 86box.zip
