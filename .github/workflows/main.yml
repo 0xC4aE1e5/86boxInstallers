@@ -49,7 +49,7 @@ jobs:
         run: |
           iwr "https://github.com/86Box/roms/archive/refs/heads/master.zip" -OutFile roms.zip
           expand-archive -path roms.zip -destination 86boxFiles
-          cmd /c ren 86boxFiles\roms-master 86boxFiles\roms
+          cmd /c "rename 86boxFiles\roms-master 86boxFiles\roms"
       - name: Create 
         run: 7z a 86box.zip .\86boxFiles\*
       - name: 'Upload ZIP'
