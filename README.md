@@ -6,4 +6,7 @@ All that you have to do is this:
 2. Click the latest release that was built successfully.
 3. Download the artifact you would like.
 
-Note: For some reason Windows Defender detects these installers as malicious software. This is a false positive.
+Notes:
+
+1. For some reason Windows Defender detects these installers as malicious software. This is a false positive.
+2. This might be out of date. It uploads on the 15th of every day.
