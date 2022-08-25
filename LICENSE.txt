@@ -1,3 +1,7 @@
+--   IMPORTANT   --
+The software you are installing VIOLATES the GPL.
+-- END IMPORTANT --
+
 These components of 86Box that you are installing have 3 licenses.
 
 86Box:
