@@ -1,4 +1,7 @@
 # THIS VIOLATES THE GPL!
+
+The reason is because it bundles the ROMs which have a different license.
+
 ## Instructions
 
 All that you have to do is this:
